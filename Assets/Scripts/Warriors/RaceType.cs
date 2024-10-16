@@ -1,5 +1,5 @@
 ﻿
-public enum CharacterType
+public enum RaceType
 {
     Sayan,
     Namekian,

@@ -10,10 +10,4 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    
-    public void StartGame()
-    {
-        GameObject sayanObject = Instantiate(characterPrefab);
-        Character sayan = CharacterFactory.CreateCharacter(CharacterType.Sayan, sayanObject);
-    }
 }

@@ -10,8 +10,12 @@ public class StartUI : MonoBehaviour
     public GameObject buttonPrefab;
     public Transform buttonContainer;
     public CharacterDatabase characterDatabase;
-
-    private Dictionary<CharacterType, CharacterInfo> characterInfoDictionary;
+    
+    private Dictionary<RaceType, CharacterInfo> characterInfoDictionary;
+    
+    RaceFactory _raceFactory = new RaceFactory();
+    public CharacterMaker characterMaker;
+    
 
     void Start()
     {
@@ -48,7 +52,11 @@ public class StartUI : MonoBehaviour
     {
         // PlayerInfos.Instance.SetCharacter(selectedCharacter);
         Debug.Log("Character sélectionnée : " + selectedCharacter);
+        
+        _raceFactory.CreateCharacter(selectedCharacter.type, characterMaker.GenerateCharacter(selectedCharacter));
+        
         CloseUI();
+        
     }
 
     void CloseUI()

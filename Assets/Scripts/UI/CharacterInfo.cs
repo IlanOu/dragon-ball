@@ -4,6 +4,6 @@ using UnityEngine.Serialization;
 [System.Serializable]
 public class CharacterInfo
 {
-    public CharacterType character;
+    [FormerlySerializedAs("character")] public RaceType race;
     public Sprite buttonImage;
 }

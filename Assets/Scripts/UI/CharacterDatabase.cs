@@ -8,8 +8,9 @@ public class CharacterDatabase : ScriptableObject
     public class CharacterInfo
     {
         public string name;
-        public CharacterType type;
+        public RaceType type;
         public Sprite buttonImage;
+        public GameObject prefabCharacter;
     }
 
     public List<CharacterInfo> characters;

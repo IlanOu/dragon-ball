@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Android : Character
+public class Android : Race
 {
     private void Start()
     {
-        characterName = "Android";
+        // characterName = "Android";
     }
 
     public override void Attack()
     {
-        Debug.Log(characterName + " attaque avec un Kamehameha !");
+        Debug.Log(" attaque avec un Kamehameha !");
     }
 }

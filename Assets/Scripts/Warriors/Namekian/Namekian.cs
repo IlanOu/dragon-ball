@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Namekian : Character
+public class Namekian : Race
 {
 
     private void Start()
     {
-        // Default parameters for Namekians
-        characterName = "Namekian";
     }
     
     public override void Attack()
     {
-        Debug.Log(characterName + " attaque avec un Kamehameha !");
+        Debug.Log(" attaque avec un Kamehameha !");
     }
 }

@@ -14,12 +14,4 @@ public class EvolutionStateMachine : MonoBehaviour
         currentState = newState;
         currentState.Enter();
     }
-
-    public void Update()
-    {
-        if (currentState != null)
-        {
-            currentState.Update();
-        }
-    }
 }

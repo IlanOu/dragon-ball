@@ -1,20 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class Sayan : Character
+public class Sayan : Race
 {
     private EvolutionStateMachine evolutionStateMachine;
 
     private void Start()
     {
         // Default parameters for Sayans
-        characterName = "Sayan";
-
+        
+        PlayerInfos.Instance.FullHeal();
+        
         evolutionStateMachine = new EvolutionStateMachine();
         evolutionStateMachine.ChangeState(new SuperSayanI(gameObject, evolutionStateMachine));
     }
     
     public override void Attack()
     {
-        Debug.Log(characterName + " attaque avec un Kamehameha !");
+        Debug.Log(" attaque avec un Kamehameha !");
+    }
+
+    private void Update()
+    {
+        evolutionStateMachine.currentState.Update();
     }
 }
