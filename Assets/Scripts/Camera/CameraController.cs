@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float dragSpeed = 2f;           
-    public float zoomSpeed = 2f;           
-    public float minZoom = 5f;             
-    public float maxZoom = 20f;            
+    public float dragSpeed = 40f;
+    public float zoomSpeed = 10f;
+    public float minZoom = 5f;
+    public float maxZoom = 20f;
 
     private Vector3 dragOrigin;            
 

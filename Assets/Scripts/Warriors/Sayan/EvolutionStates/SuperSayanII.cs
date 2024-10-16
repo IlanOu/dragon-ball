@@ -2,15 +2,17 @@
 
 public class SuperSayanII : EvolutionState
 {
-    public float maxLife = 15f;
+
+    public float maxLife = 12f;
     
     public SuperSayanII(GameObject gameObject, EvolutionStateMachine stateMachine)
         : base(gameObject, stateMachine) { }
 
     public override void Enter()
     {
-        Debug.Log("Entering Super Sayan 2 mode");
-        Statistics.Instance.SetMaxLife(maxLife);
+        PlayerInfos.Instance.SetMaxLife(maxLife);
+        Debug.Log("Entering Super Sayan 1 mode");
+        PlayerInfos.Instance.SetMaxLife(maxLife);
     }
 
     public override void Update()
@@ -24,6 +26,6 @@ public class SuperSayanII : EvolutionState
 
     public override void Exit()
     {
-        Debug.Log("Exiting Super Sayan 2 mode");
+        Debug.Log("Exiting Super Sayan 1 mode");
     }
 }

@@ -2,11 +2,11 @@
 using System;
 using UnityEngine;
 
-public class Statistics: MonoBehaviour
+public class PlayerInfos: MonoBehaviour
 {
     // ----- Implement Singleton
     
-    public static Statistics Instance;
+    public static PlayerInfos Instance;
     
     private void Awake()
     {

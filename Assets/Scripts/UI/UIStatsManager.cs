@@ -12,6 +12,6 @@ public class UIStatsManager : MonoBehaviour
 
     private void Update()
     {
-        lifeText.text = "Life: " + Statistics.Instance.life.ToString() + "/" + Statistics.Instance.maxLife.ToString();
+        lifeText.text = "Life: " + PlayerInfos.Instance.life.ToString() + "/" + PlayerInfos.Instance.maxLife.ToString();
     }
 }
