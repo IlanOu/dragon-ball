@@ -15,7 +15,6 @@ public class SuperSayanI : EvolutionState
 
     public override void Update()
     {
-        Debug.Log("Super Sayan I Update");
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Space pressed");
