@@ -19,21 +19,27 @@ MonoBehaviour:
     prefabCharacter: {fileID: 4754745085934575596, guid: 387ccf0ae91f7e5448dd19e3acdc9677, type: 3}
     mainTechnic: 0
     prefabMainTechnic: {fileID: 4754745085934575596, guid: d34a1d5e9caa0594fbac7483e691038a, type: 3}
+    mainDamageMultiplier: 3
     secondaryTechnic: 1
     prefabSecondaryTechnic: {fileID: 4754745085934575596, guid: 29546e76fbe5e8f428be658b054f144f, type: 3}
+    secondaryDamageMultiplier: 1
   - name: Piccolo
     type: 1
     buttonImage: {fileID: 21300000, guid: 3ccdca1458c8dd9478a723e97653f72a, type: 3}
     prefabCharacter: {fileID: 4754745085934575596, guid: d50a396c44899e54ba1bfb7adf92c967, type: 3}
     mainTechnic: 2
     prefabMainTechnic: {fileID: 4754745085934575596, guid: fd71c9878a51ef841b56ab1fc01e361a, type: 3}
+    mainDamageMultiplier: 2
     secondaryTechnic: 3
     prefabSecondaryTechnic: {fileID: 4754745085934575596, guid: b710dbeae87689140831efece109519e, type: 3}
+    secondaryDamageMultiplier: 2
   - name: Android 18
     type: 2
     buttonImage: {fileID: 21300000, guid: 0fcfba9c61061094cb48046f2c89292f, type: 3}
     prefabCharacter: {fileID: 4754745085934575596, guid: 27972926e8201184b97d41b9d01430b4, type: 3}
     mainTechnic: 1
     prefabMainTechnic: {fileID: 4754745085934575596, guid: 29546e76fbe5e8f428be658b054f144f, type: 3}
+    mainDamageMultiplier: 1
     secondaryTechnic: 3
     prefabSecondaryTechnic: {fileID: 4754745085934575596, guid: b710dbeae87689140831efece109519e, type: 3}
+    secondaryDamageMultiplier: 0

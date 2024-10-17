@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class PlayerInfos: MonoBehaviour
 {
@@ -37,12 +38,15 @@ public class PlayerInfos: MonoBehaviour
     
     public bool isAttacking = false; 
     public bool isAttackCharging = false; 
+    
+    public UnityEvent OnDeath;
     // ----- Methods
 
     public void Kill()
     {
         life = 0;
         isAlive = false;
+        OnDeath?.Invoke();
     }
     
     public void TakeDamage(float damage)
