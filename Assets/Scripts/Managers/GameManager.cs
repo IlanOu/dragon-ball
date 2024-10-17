@@ -3,11 +3,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject characterPrefab;
-    
-    private void Start()
+
+    // ----- Implement Singleton
+
+    public static GameManager Instance;
+
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    // -----
+    public void OnPlayerReady()
+    {
+        EnemyGenerator.Instance.GenerateEnemies();
     }
 }

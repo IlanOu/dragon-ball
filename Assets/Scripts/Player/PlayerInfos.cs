@@ -28,7 +28,7 @@ public class PlayerInfos: MonoBehaviour
     public float strength = 0.0f;
     public float speed = 10f;
     public bool isAlive = true;
-    
+    public GameObject player;
     
     // ----- Methods
 

@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AgentMovement : MonoBehaviour
 {
     public NavMeshAgent agent;
-
+    
     void Update()
     {
         if (Input.GetMouseButtonDown(1))

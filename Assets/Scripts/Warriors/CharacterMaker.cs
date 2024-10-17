@@ -9,6 +9,8 @@ public class CharacterMaker : MonoBehaviour
         GameObject instantiateChar = Instantiate(characterInfo.prefabCharacter);
         instantiateChar.name = characterInfo.name;
 
+        PlayerInfos.Instance.player = instantiateChar;
+        
         AgentMovement agentMovement = instantiateChar.AddComponent<AgentMovement>();
         NavMeshAgent navMeshAgent = instantiateChar.AddComponent<NavMeshAgent>();
         

@@ -56,11 +56,11 @@ public class StartUI : MonoBehaviour
         _raceFactory.CreateCharacter(selectedCharacter.type, characterMaker.GenerateCharacter(selectedCharacter));
         
         CloseUI();
-        
     }
 
     void CloseUI()
     {
         gameObject.SetActive(false);
+        GameManager.Instance.OnPlayerReady();
     }
 }
