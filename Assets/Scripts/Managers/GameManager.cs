@@ -21,10 +21,4 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    // -----
-    public void OnPlayerReady()
-    {
-        EnemyGenerator.Instance.Initialize();
-    }
 }

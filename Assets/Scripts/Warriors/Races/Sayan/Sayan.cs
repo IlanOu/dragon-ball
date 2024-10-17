@@ -13,7 +13,10 @@ public class Sayan : Race
         PlayerInfos.Instance.FullHeal();
         PlayerInfos.Instance.SetSpeed(10f);
         PlayerInfos.Instance.SetStrength(8f);
-        evolutionStateMachine = new EvolutionStateMachine();
+        
+        evolutionStateMachine = GetComponent<EvolutionStateMachine>();
+        if (evolutionStateMachine == null)
+            evolutionStateMachine = gameObject.AddComponent<EvolutionStateMachine>();
         evolutionStateMachine.ChangeState(new SuperSayanI(gameObject, evolutionStateMachine));
     }
     

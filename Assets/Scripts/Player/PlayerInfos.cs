@@ -31,6 +31,9 @@ public class PlayerInfos: MonoBehaviour
     public bool isAlive = true;
     public GameObject player;
     public NavMeshAgent playerAgent;
+
+    public ITechnic mainTechnic;
+    public ITechnic secondaryTechnic;
     
     // ----- Methods
 

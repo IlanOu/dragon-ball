@@ -15,10 +15,12 @@ public class StartUI : MonoBehaviour
     
     RaceFactory _raceFactory = new RaceFactory();
     public CharacterMaker characterMaker;
-    
+
+    public event Action OnPlayerReady;
 
     void Start()
     {
+        OnPlayerReady += () => EnemyGenerator.Instance.Initialize();
         CreateButtons();
     }
 
@@ -50,9 +52,6 @@ public class StartUI : MonoBehaviour
 
     void OnCharacterSelected(CharacterDatabase.CharacterInfo selectedCharacter)
     {
-        // PlayerInfos.Instance.SetCharacter(selectedCharacter);
-        Debug.Log("Character sélectionnée : " + selectedCharacter);
-        
         _raceFactory.CreateCharacter(selectedCharacter.type, characterMaker.GenerateCharacter(selectedCharacter));
         
         CloseUI();
@@ -61,6 +60,6 @@ public class StartUI : MonoBehaviour
     void CloseUI()
     {
         gameObject.SetActive(false);
-        GameManager.Instance.OnPlayerReady();
+        OnPlayerReady?.Invoke();
     }
 }

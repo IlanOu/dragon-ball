@@ -11,6 +11,8 @@ public class Android : Race
         PlayerInfos.Instance.FullHeal();
         PlayerInfos.Instance.SetSpeed(4f);
         PlayerInfos.Instance.SetStrength(10f);
+
+        // PlayerInfos.Instance.SetMainTechnic();
     }
 
     public override void Attack()

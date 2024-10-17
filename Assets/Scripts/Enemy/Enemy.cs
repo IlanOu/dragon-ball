@@ -92,11 +92,6 @@ public class Enemy : MonoBehaviour
     {
         agent.SetDestination(target.position);
     }
-
-    public void DisplayEnemyInfo()
-    {
-        Debug.Log($"Enemy: {enemyName}, Health: {health}, Attack: {attack}, Speed: {speed}");
-    }
     
     // ----- Events
 

@@ -17,11 +17,17 @@ MonoBehaviour:
     type: 0
     buttonImage: {fileID: 21300000, guid: 1f84b870512f4a44a9b6d6ef59974ec4, type: 3}
     prefabCharacter: {fileID: 4754745085934575596, guid: 387ccf0ae91f7e5448dd19e3acdc9677, type: 3}
+    mainTechnic: 0
+    secondaryTechnic: 1
   - name: Piccolo
     type: 1
     buttonImage: {fileID: 21300000, guid: 3ccdca1458c8dd9478a723e97653f72a, type: 3}
     prefabCharacter: {fileID: 4754745085934575596, guid: d50a396c44899e54ba1bfb7adf92c967, type: 3}
+    mainTechnic: 2
+    secondaryTechnic: 3
   - name: Android 18
     type: 2
     buttonImage: {fileID: 21300000, guid: 0fcfba9c61061094cb48046f2c89292f, type: 3}
     prefabCharacter: {fileID: 4754745085934575596, guid: 27972926e8201184b97d41b9d01430b4, type: 3}
+    mainTechnic: 1
+    secondaryTechnic: 3

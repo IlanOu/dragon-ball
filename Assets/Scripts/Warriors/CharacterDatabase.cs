@@ -11,6 +11,9 @@ public class CharacterDatabase : ScriptableObject
         public RaceType type;
         public Sprite buttonImage;
         public GameObject prefabCharacter;
+
+        public TechnicType mainTechnic;
+        public TechnicType secondaryTechnic;
     }
 
     public List<CharacterInfo> characters;

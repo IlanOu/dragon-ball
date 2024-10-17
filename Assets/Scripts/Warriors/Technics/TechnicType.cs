@@ -1,6 +1,8 @@
 
 public enum TechnicType
 {
-    Kamehameha,
-    Rasengan,
+    kamehameha,
+    deathbeam,
+    galickgun,
+    finalflash
 }

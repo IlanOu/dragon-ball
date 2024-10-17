@@ -1,5 +1,6 @@
+using UnityEngine;
 
-public interface ITechnic
+public abstract class ITechnic : MonoBehaviour
 {
-    
+    public abstract void Attack();
 }

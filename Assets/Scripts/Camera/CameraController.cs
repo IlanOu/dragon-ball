@@ -7,24 +7,24 @@ public class CameraController : MonoBehaviour
     public float minZoom = 5f;
     public float maxZoom = 20f;
 
-    private Vector3 dragOrigin;            
+    private Vector3 dragOrigin;
 
     void Update()
     {
-        HandleMouseDrag();                 
-        HandleZoom();                      
+        HandleMouseDrag();
+        HandleZoom();
     }
 
     
     private void HandleMouseDrag()
     {
-        if (Input.GetMouseButtonDown(0))   
+        if (Input.GetMouseButtonDown(0))
         {
             dragOrigin = Input.mousePosition;
             return;
         }
 
-        if (Input.GetMouseButton(0))       
+        if (Input.GetMouseButton(0))
         {
             
             Vector3 difference = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
     
     private void HandleZoom()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");  
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0.0f)
         {
             Camera.main.orthographicSize -= scroll * zoomSpeed;
