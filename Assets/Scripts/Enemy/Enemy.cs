@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
     private bool usePathfinding = false;
 
     private NavMeshAgent agent;
+
+    public event Action OnDeath;
+    
+    // ----- Builder methods
     
     public void SetName(string name)
     {
@@ -32,6 +36,10 @@ public class Enemy : MonoBehaviour
     public void SetSpeed(float speed)
     {
         this.speed = speed;
+        if (agent)
+        {
+            agent.speed = speed;
+        }
     }
 
     public void SetModel(GameObject modelPrefab)
@@ -57,11 +65,26 @@ public class Enemy : MonoBehaviour
         usePathfinding = true;
     }
     
+    
+    // ----- Other methods
+
+    public void IncreaseStats(float multiplier)
+    {
+        health = Mathf.RoundToInt(health * multiplier);
+        attack = Mathf.RoundToInt(attack * multiplier);
+        speed *= multiplier;
+    }
+    
     void Update()
     {
         if (usePathfinding)
         {
             SetPathfindingTarget(PlayerInfos.Instance.player.transform);   
+        }
+
+        if (health <= 0)
+        {
+            Kill();
         }
     }
 
@@ -73,5 +96,17 @@ public class Enemy : MonoBehaviour
     public void DisplayEnemyInfo()
     {
         Debug.Log($"Enemy: {enemyName}, Health: {health}, Attack: {attack}, Speed: {speed}");
+    }
+    
+    // ----- Events
+
+    public void Kill()
+    {
+        OnDeath?.Invoke();
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 }

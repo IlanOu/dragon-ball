@@ -9,8 +9,10 @@ public class SuperSayanIII : EvolutionState
 
     public override void Enter()
     {
-        Debug.Log("Entering Super Sayan 2 mode");
+        Debug.Log("Entering Super Sayan 3 mode");
         PlayerInfos.Instance.SetMaxLife(maxLife);
+        PlayerInfos.Instance.SetSpeed(12f);
+        PlayerInfos.Instance.SetStrength(14f);
     }
 
     public override void Update()
@@ -24,6 +26,6 @@ public class SuperSayanIII : EvolutionState
 
     public override void Exit()
     {
-        Debug.Log("Exiting Super Sayan 2 mode");
+        Debug.Log("Exiting Super Sayan 3 mode");
     }
 }

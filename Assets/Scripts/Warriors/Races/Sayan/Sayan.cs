@@ -9,8 +9,10 @@ public class Sayan : Race
     {
         // Default parameters for Sayans
         
+        PlayerInfos.Instance.SetMaxLife(10f);
         PlayerInfos.Instance.FullHeal();
-        
+        PlayerInfos.Instance.SetSpeed(10f);
+        PlayerInfos.Instance.SetStrength(8f);
         evolutionStateMachine = new EvolutionStateMachine();
         evolutionStateMachine.ChangeState(new SuperSayanI(gameObject, evolutionStateMachine));
     }

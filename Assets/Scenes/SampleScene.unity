@@ -406,6 +406,7 @@ MonoBehaviour:
   strength: 0
   speed: 10
   isAlive: 1
+  player: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,8 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9c7a21f9fd79848b31b05dd82f23bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6668062126949239529, guid: e93335146044dbf4197227ccf3aaa797, type: 3}
-  goblinPrefab: {fileID: 6668062126949239529, guid: 76838e65933b0dd459bab91a83bc518e, type: 3}
+  baseEnemyPrefab: {fileID: 6668062126949239529, guid: e93335146044dbf4197227ccf3aaa797, type: 3}
+  goblinPrefab: {fileID: 6668062126949239529, guid: 64d40c832b9b3f245b7aba371d6d2b45, type: 3}
   dragonPrefab: {fileID: 6668062126949239529, guid: 76838e65933b0dd459bab91a83bc518e, type: 3}
 --- !u!1 &933412950
 GameObject:
@@ -989,7 +990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc374091a17142948851d70ac8b484fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 4754745085934575596, guid: 387ccf0ae91f7e5448dd19e3acdc9677, type: 3}
 --- !u!1 &1457114722
 GameObject:
   m_ObjectHideFlags: 0

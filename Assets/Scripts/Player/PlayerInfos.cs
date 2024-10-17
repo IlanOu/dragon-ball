@@ -1,6 +1,7 @@
 ﻿
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerInfos: MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PlayerInfos: MonoBehaviour
     public float speed = 10f;
     public bool isAlive = true;
     public GameObject player;
+    public NavMeshAgent playerAgent;
     
     // ----- Methods
 
@@ -42,7 +44,7 @@ public class PlayerInfos: MonoBehaviour
     {
         life -= damage;
         
-        if (life < 0)
+        if (life <= 0)
         {
             Kill();
         }
@@ -80,5 +82,16 @@ public class PlayerInfos: MonoBehaviour
     public void SetMaxLife(float amount)
     {
         maxLife = amount;
+    }
+    
+    public void SetSpeed(float amount)
+    {
+        speed = amount;
+        playerAgent.speed = speed;
+    }
+    
+    public void SetStrength(float amount)
+    {
+        strength = amount;
     }
 }

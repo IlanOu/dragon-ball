@@ -13,6 +13,7 @@ public class CharacterMaker : MonoBehaviour
         
         AgentMovement agentMovement = instantiateChar.AddComponent<AgentMovement>();
         NavMeshAgent navMeshAgent = instantiateChar.AddComponent<NavMeshAgent>();
+        PlayerInfos.Instance.playerAgent = navMeshAgent;
         
         navMeshAgent.speed = PlayerInfos.Instance.speed;
         navMeshAgent.angularSpeed = 1000f;
