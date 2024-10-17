@@ -10,12 +10,11 @@ public class Kamehameha : ITechnic
     public float cooldownTime = 10f;
 
     private GameObject kamehamehaInstance;
-    private bool isAttacking = false;
     private bool isCooldown = false;
     
     public override void Attack()
     {
-        if (!isAttacking && !isCooldown)
+        if (!PlayerInfos.Instance.isAttacking && !PlayerInfos.Instance.isAttackCharging && !isCooldown)
         {
             PlayerInfos.Instance.StartCoroutine(PerformKamehameha());
         }
@@ -27,10 +26,14 @@ public class Kamehameha : ITechnic
 
     private IEnumerator PerformKamehameha()
     {
-        isAttacking = true;
+        PlayerInfos.Instance.isAttackCharging = true;
+        
         Debug.Log("Charge du Kamehameha...");
 
         yield return new WaitForSeconds(chargeTime);
+
+        PlayerInfos.Instance.isAttackCharging = false;
+        PlayerInfos.Instance.isAttacking = true;
 
         Debug.Log("Lancement du Kamehameha !!!");
 
@@ -41,7 +44,16 @@ public class Kamehameha : ITechnic
 
         // Instancier le Kamehameha avec la rotation calculée
         kamehamehaInstance = Instantiate(prefab, PlayerInfos.Instance.player.transform.position, rotation);
-
+        DamageDealer damageDealer = kamehamehaInstance.GetComponent<DamageDealer>();
+        if (damageDealer == null)
+        {
+            damageDealer = kamehamehaInstance.AddComponent<DamageDealer>();
+        }
+        if (damageDealer != null)
+        {
+            damageDealer.damage = 50;
+        }
+        
         float elapsedTime = 0f;
         while (elapsedTime < attackDuration)
         {
@@ -61,7 +73,7 @@ public class Kamehameha : ITechnic
 
         Debug.Log("Kamehameha terminé.");
 
-        isAttacking = false;
+        PlayerInfos.Instance.isAttacking = false;
         StartCooldown();
     }
 

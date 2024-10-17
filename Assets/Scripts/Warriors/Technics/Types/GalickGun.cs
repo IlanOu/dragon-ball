@@ -11,12 +11,11 @@ public class GalickGun : ITechnic
     public int burstCount = 3; // Nombre de tirs dans une rafale
     public float burstDelay = 0.2f; // Délai entre chaque tir de la rafale
 
-    private bool isAttacking = false;
     private bool isCooldown = false;
     
     public override void Attack()
     {
-        if (!isAttacking && !isCooldown)
+        if (!PlayerInfos.Instance.isAttacking && !PlayerInfos.Instance.isAttackCharging && !isCooldown)
         {
             PlayerInfos.Instance.StartCoroutine(PerformGalickGun());
         }
@@ -28,11 +27,14 @@ public class GalickGun : ITechnic
 
     private IEnumerator PerformGalickGun()
     {
-        isAttacking = true;
+        PlayerInfos.Instance.isAttackCharging = true;
         Debug.Log("Charge du Galick Gun...");
 
         // TODO: Ajouter des effets visuels et sonores pour la charge
         yield return new WaitForSeconds(chargeTime);
+
+        PlayerInfos.Instance.isAttackCharging = false;
+        PlayerInfos.Instance.isAttacking = true;
 
         Debug.Log("Lancement du Galick Gun !!!");
 
@@ -43,6 +45,15 @@ public class GalickGun : ITechnic
         for (int i = 0; i < burstCount; i++)
         {
             GameObject galickGunInstance = Instantiate(prefab, PlayerInfos.Instance.player.transform.position, rotation);
+            DamageDealer damageDealer = galickGunInstance.GetComponent<DamageDealer>();
+            if (damageDealer == null)
+            {
+                damageDealer = galickGunInstance.AddComponent<DamageDealer>();
+            }
+            if (damageDealer != null)
+            {
+                damageDealer.damage = 50;
+            }
             
             // Ajuster la taille du Galick Gun (plus petit que le Kamehameha)
             galickGunInstance.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
@@ -59,7 +70,7 @@ public class GalickGun : ITechnic
 
         Debug.Log("Galick Gun terminé.");
 
-        isAttacking = false;
+        PlayerInfos.Instance.isAttacking = false;
         StartCooldown();
     }
 

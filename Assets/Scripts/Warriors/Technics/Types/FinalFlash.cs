@@ -11,12 +11,11 @@ public class FinalFlash : ITechnic
     public float cooldownTime = 15f; // Temps de recharge plus long
 
     private GameObject finalFlashInstance;
-    private bool isAttacking = false;
     private bool isCooldown = false;
     
     public override void Attack()
     {
-        if (!isAttacking && !isCooldown)
+        if (!PlayerInfos.Instance.isAttacking && !PlayerInfos.Instance.isAttackCharging && !isCooldown)
         {
             PlayerInfos.Instance.StartCoroutine(PerformFinalFlash());
         }
@@ -28,13 +27,16 @@ public class FinalFlash : ITechnic
 
     private IEnumerator PerformFinalFlash()
     {
-        isAttacking = true;
+        PlayerInfos.Instance.isAttackCharging = true;
         Debug.Log("Charge du Final Flash...");
 
         // Effet de charge plus intense
         // TODO: Ajouter des effets visuels et sonores pour la charge
 
         yield return new WaitForSeconds(chargeTime);
+
+        PlayerInfos.Instance.isAttackCharging = false;
+        PlayerInfos.Instance.isAttacking = true;
 
         Debug.Log("Lancement du Final Flash !!!");
 
@@ -43,6 +45,15 @@ public class FinalFlash : ITechnic
         Quaternion rotation = Quaternion.LookRotation(mouseDirection);
 
         finalFlashInstance = Instantiate(prefab, PlayerInfos.Instance.player.transform.position, rotation);
+        DamageDealer damageDealer = finalFlashInstance.GetComponent<DamageDealer>();
+        if (damageDealer == null)
+        {
+            damageDealer = finalFlashInstance.AddComponent<DamageDealer>();
+        }
+        if (damageDealer != null)
+        {
+            damageDealer.damage = 50;
+        }
         
         // Ajuster la taille du Final Flash
         finalFlashInstance.transform.localScale = new Vector3(attackWidth, finalFlashInstance.transform.localScale.y, finalFlashInstance.transform.localScale.z);
@@ -72,7 +83,7 @@ public class FinalFlash : ITechnic
 
         Debug.Log("Final Flash terminé.");
 
-        isAttacking = false;
+        PlayerInfos.Instance.isAttacking = false;
         StartCooldown();
     }
 

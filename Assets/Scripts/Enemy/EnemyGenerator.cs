@@ -94,11 +94,14 @@ public class EnemyGenerator : MonoBehaviour
 
     private void RemoveEnemy(Enemy enemy)
     {
+        
         activeEnemies.Remove(enemy);
         if (activeEnemies.Count == 0)
         {
             OnWaveCompleted?.Invoke();
             Debug.Log($"Wave {waveNumber} completed");
         }
+        
+        Destroy(enemy.gameObject);
     }
 }

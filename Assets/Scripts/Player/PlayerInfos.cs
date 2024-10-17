@@ -35,6 +35,8 @@ public class PlayerInfos: MonoBehaviour
     public ITechnic mainTechnic;
     public ITechnic secondaryTechnic;
     
+    public bool isAttacking = false; 
+    public bool isAttackCharging = false; 
     // ----- Methods
 
     public void Kill()

@@ -5,18 +5,17 @@ public class DeathBeam : ITechnic
 {
     public override GameObject prefab { get; set; }
 
-    private const float CHARGE_TIME = 0.5f;
-    private const float BEAM_DURATION = 3f;
-    private const float COOLDOWN_TIME = 7f;
-    private const float BEAM_SPEED = 40f;
+    public float chargeTime = 0.5f;
+    public float attackDuration = 3f;
+    public float attackSpeed = 40f;
+    public float cooldownTime = 7f;
 
-    private bool isCharging = false;
-    private bool isFiring = false;
-    private bool isOnCooldown = false;
+    private GameObject beamInstance;
+    private bool isCooldown = false;
 
     public override void Attack()
     {
-        if (!isCharging && !isFiring && !isOnCooldown)
+        if (!PlayerInfos.Instance.isAttacking && !PlayerInfos.Instance.isAttackCharging && !isCooldown)
         {
             PlayerInfos.Instance.StartCoroutine(PerformDeathBeam());
         }
@@ -28,29 +27,51 @@ public class DeathBeam : ITechnic
 
     private IEnumerator PerformDeathBeam()
     {
-        isCharging = true;
+        PlayerInfos.Instance.isAttackCharging = true;
+        
         Debug.Log("Charge du Death Beam...");
-        yield return new WaitForSeconds(CHARGE_TIME);
-        isCharging = false;
+        yield return new WaitForSeconds(chargeTime);
 
-        isFiring = true;
+        PlayerInfos.Instance.isAttackCharging = false;
+        PlayerInfos.Instance.isAttacking = true;
+
         Debug.Log("Lancement du Death Beam !");
 
-        Vector3 direction = (GetMouseWorldPosition() - PlayerInfos.Instance.player.transform.position).normalized;
-        GameObject beam = Object.Instantiate(prefab, PlayerInfos.Instance.player.transform.position, Quaternion.LookRotation(direction));
+        Vector3 mouseDirection = GetMouseWorldPosition() - PlayerInfos.Instance.player.transform.position;
+        mouseDirection.y = 0; // Ignorer la différence de hauteur pour une vue isométrique
+        Quaternion rotation = Quaternion.LookRotation(mouseDirection);
+
+        beamInstance = Instantiate(prefab, PlayerInfos.Instance.player.transform.position, rotation);
+        DamageDealer damageDealer = beamInstance.GetComponent<DamageDealer>();
+        if (damageDealer == null)
+        {
+            damageDealer = beamInstance.AddComponent<DamageDealer>();
+        }
+        if (damageDealer != null)
+        {
+            damageDealer.damage = 50;
+        }
 
         float elapsedTime = 0f;
-        while (elapsedTime < BEAM_DURATION)
+        while (elapsedTime < attackDuration)
         {
-            beam.transform.position += direction * BEAM_SPEED * Time.deltaTime;
+            if (beamInstance != null)
+            {
+                beamInstance.transform.Translate(Vector3.forward * attackSpeed * Time.deltaTime);
+            }
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        Object.Destroy(beam);
-        isFiring = false;
+        if (beamInstance != null)
+        {
+            Destroy(beamInstance);
+        }
+
         Debug.Log("Death Beam terminé.");
 
+        PlayerInfos.Instance.isAttacking = false;
         StartCooldown();
     }
 
@@ -61,10 +82,10 @@ public class DeathBeam : ITechnic
 
     private IEnumerator CooldownRoutine()
     {
-        isOnCooldown = true;
+        isCooldown = true;
         Debug.Log("Death Beam en recharge...");
-        yield return new WaitForSeconds(COOLDOWN_TIME);
-        isOnCooldown = false;
+        yield return new WaitForSeconds(cooldownTime);
+        isCooldown = false;
         Debug.Log("Death Beam prêt !");
     }
 
