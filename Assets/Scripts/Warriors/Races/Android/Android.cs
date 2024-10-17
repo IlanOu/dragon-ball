@@ -10,7 +10,7 @@ public class Android : Race
         PlayerInfos.Instance.SetMaxLife(14f);
         PlayerInfos.Instance.FullHeal();
         PlayerInfos.Instance.SetSpeed(4f);
-        PlayerInfos.Instance.SetStrength(10f);
+        PlayerInfos.Instance.SetStrength(6f);
 
         // PlayerInfos.Instance.SetMainTechnic();
     }

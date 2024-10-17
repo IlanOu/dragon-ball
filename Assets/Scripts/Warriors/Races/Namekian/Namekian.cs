@@ -8,7 +8,7 @@ public class Namekian : Race
         PlayerInfos.Instance.SetMaxLife(13f);
         PlayerInfos.Instance.FullHeal();
         PlayerInfos.Instance.SetSpeed(9f);
-        PlayerInfos.Instance.SetStrength(6f);
+        PlayerInfos.Instance.SetStrength(3f);
     }
     
     public override void Attack()

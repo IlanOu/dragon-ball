@@ -53,7 +53,7 @@ public class Kamehameha : ITechnic
         }
         if (damageDealer != null)
         {
-            damageDealer.damage = Mathf.RoundToInt(PlayerInfos.Instance.strength * damagesMultiplier);
+            damageDealer.damage = Mathf.RoundToInt(PlayerInfos.Instance.strength * (1 + damagesMultiplier/10));
         }
         
         float elapsedTime = 0f;

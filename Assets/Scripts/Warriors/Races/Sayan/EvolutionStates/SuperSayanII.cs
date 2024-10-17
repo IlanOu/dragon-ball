@@ -14,7 +14,7 @@ public class SuperSayanII : EvolutionState
         Debug.Log("Entering Super Sayan 2 mode");
         PlayerInfos.Instance.SetMaxLife(maxLife);
         PlayerInfos.Instance.SetSpeed(12f);
-        PlayerInfos.Instance.SetStrength(12f);
+        PlayerInfos.Instance.SetStrength(8f);
     }
 
     public override void Update()

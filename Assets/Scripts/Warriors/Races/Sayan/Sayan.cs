@@ -12,7 +12,7 @@ public class Sayan : Race
         PlayerInfos.Instance.SetMaxLife(10f);
         PlayerInfos.Instance.FullHeal();
         PlayerInfos.Instance.SetSpeed(10f);
-        PlayerInfos.Instance.SetStrength(8f);
+        PlayerInfos.Instance.SetStrength(5f);
         
         evolutionStateMachine = GetComponent<EvolutionStateMachine>();
         if (evolutionStateMachine == null)

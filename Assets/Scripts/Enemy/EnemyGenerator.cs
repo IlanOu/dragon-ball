@@ -30,7 +30,7 @@ public class EnemyGenerator : MonoBehaviour
     private EnemyDirector director;
     private int waveNumber = 0;
     private const float TimeBetweenWaves = 20f;
-    private const int BaseEnemyCount = 5;
+    private const int BaseEnemyCount = 3;
     private const int EnemyIncreasePerWave = 2;
 
     private List<Enemy> activeEnemies = new List<Enemy>();

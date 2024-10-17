@@ -12,7 +12,7 @@ public class EnemyDirector
     public Enemy BuildGoblin(GameObject goblinPrefab)
     {
         EnemyBuilder builder = new EnemyBuilder(basePrefab);
-        return builder.BuildEnemy(goblinPrefab, "Goblin", 10, 1, 3.5f);
+        return builder.BuildEnemy(goblinPrefab, "Goblin", 12, 1, 3.5f);
     }
 
     public Enemy BuildDragon(GameObject dragonPrefab)

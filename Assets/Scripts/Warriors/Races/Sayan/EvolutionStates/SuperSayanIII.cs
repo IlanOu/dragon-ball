@@ -12,7 +12,7 @@ public class SuperSayanIII : EvolutionState
         Debug.Log("Entering Super Sayan 3 mode");
         PlayerInfos.Instance.SetMaxLife(maxLife);
         PlayerInfos.Instance.SetSpeed(12f);
-        PlayerInfos.Instance.SetStrength(14f);
+        PlayerInfos.Instance.SetStrength(9f);
     }
 
     public override void Update()

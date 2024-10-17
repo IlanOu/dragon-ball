@@ -88,7 +88,6 @@ public class Enemy : MonoBehaviour
     
     public void TakeDamage(int damage)
     {
-        Debug.Log("" + enemyName + " took " + damage + " damage.");
         health -= damage;
         
         if (health <= 0)
@@ -100,6 +99,7 @@ public class Enemy : MonoBehaviour
     
     void Update()
     {
+        // Debug.Log(health);
         if (usePathfinding)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, PlayerInfos.Instance.player.transform.position);
@@ -116,11 +116,6 @@ public class Enemy : MonoBehaviour
                 ResumeMoving();
                 SetPathfindingTarget(PlayerInfos.Instance.player.transform);
             }
-        }
-
-        if (health <= 0)
-        {
-            Kill();
         }
     }
 
