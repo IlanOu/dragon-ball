@@ -27,8 +27,8 @@ public class CharacterMaker : MonoBehaviour
         
         agentMovement.agent = navMeshAgent;
         
-        ITechnic mainTechnic = SetTechnicByType(characterInfo.mainTechnic);
-        ITechnic secondaryTechnic = SetTechnicByType(characterInfo.secondaryTechnic);
+        ITechnic mainTechnic = SetTechnicByType(characterInfo.mainTechnic, characterInfo.prefabMainTechnic);
+        ITechnic secondaryTechnic = SetTechnicByType(characterInfo.secondaryTechnic, characterInfo.prefabSecondaryTechnic);
         
         PlayerInfos.Instance.mainTechnic = mainTechnic;
         PlayerInfos.Instance.secondaryTechnic = secondaryTechnic;
@@ -36,22 +36,26 @@ public class CharacterMaker : MonoBehaviour
         return instantiateChar;
     }
 
-    public ITechnic SetTechnicByType(TechnicType type)
+    public ITechnic SetTechnicByType(TechnicType type, GameObject technicPrefab)
     {
         ITechnic technic;
         switch (type)
         {
             case TechnicType.deathbeam:
                 technic = instantiateChar.AddComponent<DeathBeam>();
+                technic.prefab = technicPrefab;
                 return technic;
             case TechnicType.kamehameha:
                 technic = instantiateChar.AddComponent<Kamehameha>();
+                technic.prefab = technicPrefab;
                 return technic;
             case TechnicType.galickgun:
                 technic = instantiateChar.AddComponent<GalickGun>();
+                technic.prefab = technicPrefab;
                 return technic;
             case TechnicType.finalflash:
                 technic = instantiateChar.AddComponent<FinalFlash>();
+                technic.prefab = technicPrefab;
                 return technic;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);

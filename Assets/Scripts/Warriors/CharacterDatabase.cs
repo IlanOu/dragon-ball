@@ -13,7 +13,10 @@ public class CharacterDatabase : ScriptableObject
         public GameObject prefabCharacter;
 
         public TechnicType mainTechnic;
+        public GameObject prefabMainTechnic;
+        
         public TechnicType secondaryTechnic;
+        public GameObject prefabSecondaryTechnic;
     }
 
     public List<CharacterInfo> characters;

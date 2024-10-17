@@ -1,9 +1,108 @@
-
+using System.Collections;
 using UnityEngine;
 
 public class FinalFlash : ITechnic
 {
-    public override void Attack()    {
-        Debug.Log(" attaque avec un FinalFlash !");
+    public override GameObject prefab { get; set; }
+    public float chargeTime = 3.0f; // Temps de charge plus long que le Kamehameha
+    public float attackDuration = 3.0f; // Durée plus courte mais plus intense
+    public float attackWidth = 5f; // Largeur de l'attaque
+    public float attackSpeed = 15f; // Vitesse plus rapide que le Kamehameha
+    public float cooldownTime = 15f; // Temps de recharge plus long
+
+    private GameObject finalFlashInstance;
+    private bool isAttacking = false;
+    private bool isCooldown = false;
+    
+    public override void Attack()
+    {
+        if (!isAttacking && !isCooldown)
+        {
+            PlayerInfos.Instance.StartCoroutine(PerformFinalFlash());
+        }
+        else
+        {
+            Debug.Log("Impossible de lancer le Final Flash pour le moment.");
+        }
+    }
+
+    private IEnumerator PerformFinalFlash()
+    {
+        isAttacking = true;
+        Debug.Log("Charge du Final Flash...");
+
+        // Effet de charge plus intense
+        // TODO: Ajouter des effets visuels et sonores pour la charge
+
+        yield return new WaitForSeconds(chargeTime);
+
+        Debug.Log("Lancement du Final Flash !!!");
+
+        Vector3 mouseDirection = GetMouseWorldPosition() - PlayerInfos.Instance.player.transform.position;
+        mouseDirection.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(mouseDirection);
+
+        finalFlashInstance = Instantiate(prefab, PlayerInfos.Instance.player.transform.position, rotation);
+        
+        // Ajuster la taille du Final Flash
+        finalFlashInstance.transform.localScale = new Vector3(attackWidth, finalFlashInstance.transform.localScale.y, finalFlashInstance.transform.localScale.z);
+
+        float elapsedTime = 0f;
+        while (elapsedTime < attackDuration)
+        {
+            if (finalFlashInstance != null)
+            {
+                finalFlashInstance.transform.Translate(Vector3.forward * attackSpeed * Time.deltaTime);
+                
+                // Effet de pulsation
+                float scale = Mathf.PingPong(elapsedTime * 4, 0.5f) + 0.75f;
+                finalFlashInstance.transform.localScale = new Vector3(attackWidth * scale, finalFlashInstance.transform.localScale.y, finalFlashInstance.transform.localScale.z);
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        if (finalFlashInstance != null)
+        {
+            // Effet d'explosion à la fin
+            // TODO: Ajouter un effet d'explosion
+            Destroy(finalFlashInstance);
+        }
+
+        Debug.Log("Final Flash terminé.");
+
+        isAttacking = false;
+        StartCooldown();
+    }
+
+    private void StartCooldown()
+    {
+        PlayerInfos.Instance.StartCoroutine(CooldownRoutine());
+    }
+
+    private IEnumerator CooldownRoutine()
+    {
+        isCooldown = true;
+        Debug.Log("Final Flash en recharge...");
+
+        yield return new WaitForSeconds(cooldownTime);
+
+        isCooldown = false;
+        Debug.Log("Final Flash prêt !");
+    }
+
+    private Vector3 GetMouseWorldPosition()
+    {
+        Plane plane = new Plane(Vector3.up, PlayerInfos.Instance.player.transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        float distance;
+        if (plane.Raycast(ray, out distance))
+        {
+            return ray.GetPoint(distance);
+        }
+
+        return PlayerInfos.Instance.player.transform.position;
     }
 }
