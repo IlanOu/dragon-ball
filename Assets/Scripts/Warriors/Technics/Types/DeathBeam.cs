@@ -4,6 +4,7 @@ using UnityEngine;
 public class DeathBeam : ITechnic
 {
     public override GameObject prefab { get; set; }
+    public override float damagesMultiplier { get; set; }
 
     public float chargeTime = 0.5f;
     public float attackDuration = 3f;
@@ -49,7 +50,7 @@ public class DeathBeam : ITechnic
         }
         if (damageDealer != null)
         {
-            damageDealer.damage = 50;
+            damageDealer.damage = Mathf.RoundToInt(PlayerInfos.Instance.strength * (1 + damagesMultiplier/10));
         }
 
         float elapsedTime = 0f;

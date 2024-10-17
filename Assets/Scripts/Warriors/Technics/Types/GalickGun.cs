@@ -4,6 +4,8 @@ using UnityEngine;
 public class GalickGun : ITechnic
 {
     public override GameObject prefab { get; set; }
+    public override float damagesMultiplier { get; set; }
+    
     public float chargeTime = 1.5f; // Temps de charge plus court
     public float attackDuration = 2.0f; // Durée courte mais intense
     public float attackSpeed = 20f; // Vitesse très rapide
@@ -52,7 +54,7 @@ public class GalickGun : ITechnic
             }
             if (damageDealer != null)
             {
-                damageDealer.damage = 50;
+                damageDealer.damage = Mathf.RoundToInt(PlayerInfos.Instance.strength * damagesMultiplier);
             }
             
             // Ajuster la taille du Galick Gun (plus petit que le Kamehameha)

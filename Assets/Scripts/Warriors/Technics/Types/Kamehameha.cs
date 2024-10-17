@@ -4,6 +4,8 @@ using UnityEngine;
 public class Kamehameha : ITechnic
 {
     public override GameObject prefab { get; set; }
+    public override float damagesMultiplier { get; set; }
+    
     public float chargeTime = 2.0f;
     public float attackDuration = 5.0f;
     public float attackSpeed = 10f;
@@ -51,7 +53,7 @@ public class Kamehameha : ITechnic
         }
         if (damageDealer != null)
         {
-            damageDealer.damage = 50;
+            damageDealer.damage = Mathf.RoundToInt(PlayerInfos.Instance.strength * damagesMultiplier);
         }
         
         float elapsedTime = 0f;

@@ -27,8 +27,8 @@ public class CharacterMaker : MonoBehaviour
         
         agentMovement.agent = navMeshAgent;
         
-        ITechnic mainTechnic = SetTechnicByType(characterInfo.mainTechnic, characterInfo.prefabMainTechnic);
-        ITechnic secondaryTechnic = SetTechnicByType(characterInfo.secondaryTechnic, characterInfo.prefabSecondaryTechnic);
+        ITechnic mainTechnic = SetTechnicByType(characterInfo.mainTechnic, characterInfo.prefabMainTechnic, characterInfo.mainDamageMultiplier);
+        ITechnic secondaryTechnic = SetTechnicByType(characterInfo.secondaryTechnic, characterInfo.prefabSecondaryTechnic, characterInfo.secondaryDamageMultiplier);
         
         PlayerInfos.Instance.mainTechnic = mainTechnic;
         PlayerInfos.Instance.secondaryTechnic = secondaryTechnic;
@@ -36,7 +36,7 @@ public class CharacterMaker : MonoBehaviour
         return instantiateChar;
     }
 
-    public ITechnic SetTechnicByType(TechnicType type, GameObject technicPrefab)
+    public ITechnic SetTechnicByType(TechnicType type, GameObject technicPrefab, float damageMultiplier)
     {
         ITechnic technic;
         switch (type)
@@ -44,18 +44,22 @@ public class CharacterMaker : MonoBehaviour
             case TechnicType.deathbeam:
                 technic = instantiateChar.AddComponent<DeathBeam>();
                 technic.prefab = technicPrefab;
+                technic.damagesMultiplier = damageMultiplier;
                 return technic;
             case TechnicType.kamehameha:
                 technic = instantiateChar.AddComponent<Kamehameha>();
                 technic.prefab = technicPrefab;
+                technic.damagesMultiplier = damageMultiplier;
                 return technic;
             case TechnicType.galickgun:
                 technic = instantiateChar.AddComponent<GalickGun>();
                 technic.prefab = technicPrefab;
+                technic.damagesMultiplier = damageMultiplier;
                 return technic;
             case TechnicType.finalflash:
                 technic = instantiateChar.AddComponent<FinalFlash>();
                 technic.prefab = technicPrefab;
+                technic.damagesMultiplier = damageMultiplier;
                 return technic;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);

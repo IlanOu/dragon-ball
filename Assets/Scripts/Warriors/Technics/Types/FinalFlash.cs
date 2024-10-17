@@ -4,11 +4,13 @@ using UnityEngine;
 public class FinalFlash : ITechnic
 {
     public override GameObject prefab { get; set; }
-    public float chargeTime = 3.0f; // Temps de charge plus long que le Kamehameha
-    public float attackDuration = 3.0f; // Durée plus courte mais plus intense
-    public float attackWidth = 5f; // Largeur de l'attaque
-    public float attackSpeed = 15f; // Vitesse plus rapide que le Kamehameha
-    public float cooldownTime = 15f; // Temps de recharge plus long
+    public override float damagesMultiplier { get; set; }
+    
+    public float chargeTime = 3.0f;
+    public float attackDuration = 3.0f;
+    public float attackWidth = 5f;
+    public float attackSpeed = 15f;
+    public float cooldownTime = 15f;
 
     private GameObject finalFlashInstance;
     private bool isCooldown = false;
@@ -52,7 +54,7 @@ public class FinalFlash : ITechnic
         }
         if (damageDealer != null)
         {
-            damageDealer.damage = 50;
+            damageDealer.damage = Mathf.RoundToInt(PlayerInfos.Instance.strength * damagesMultiplier);
         }
         
         // Ajuster la taille du Final Flash

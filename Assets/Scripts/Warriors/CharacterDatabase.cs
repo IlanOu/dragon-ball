@@ -14,9 +14,11 @@ public class CharacterDatabase : ScriptableObject
 
         public TechnicType mainTechnic;
         public GameObject prefabMainTechnic;
+        public float mainDamageMultiplier;
         
         public TechnicType secondaryTechnic;
         public GameObject prefabSecondaryTechnic;
+        public float secondaryDamageMultiplier;
     }
 
     public List<CharacterInfo> characters;

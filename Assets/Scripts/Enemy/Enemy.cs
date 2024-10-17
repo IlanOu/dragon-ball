@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
 
     public event Action OnDeath;
     
+    public float attackRange = 2f; // Distance à laquelle l'ennemi peut attaquer
+    public float attackCooldown = 1f; // Temps entre chaque attaque
+    private float lastAttackTime;
+    
     // ----- Builder methods
     
     public void SetName(string name)
@@ -75,24 +79,6 @@ public class Enemy : MonoBehaviour
         speed *= multiplier;
     }
     
-    void Update()
-    {
-        if (usePathfinding)
-        {
-            SetPathfindingTarget(PlayerInfos.Instance.player.transform);   
-        }
-
-        if (health <= 0)
-        {
-            Kill();
-        }
-    }
-
-    public void SetPathfindingTarget(Transform target)
-    {
-        agent.SetDestination(target.position);
-    }
-    
     // ----- Events
 
     public void Kill()
@@ -108,6 +94,67 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Kill();
+        }
+    }
+    
+    
+    void Update()
+    {
+        if (usePathfinding)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, PlayerInfos.Instance.player.transform.position);
+
+            if (distanceToPlayer <= attackRange)
+            {
+                // L'ennemi est assez proche pour attaquer
+                StopMoving();
+                AttackPlayer();
+            }
+            else
+            {
+                // L'ennemi doit se rapprocher du joueur
+                ResumeMoving();
+                SetPathfindingTarget(PlayerInfos.Instance.player.transform);
+            }
+        }
+
+        if (health <= 0)
+        {
+            Kill();
+        }
+    }
+
+    private void StopMoving()
+    {
+        if (agent != null)
+        {
+            agent.isStopped = true;
+        }
+    }
+
+    private void ResumeMoving()
+    {
+        if (agent != null)
+        {
+            agent.isStopped = false;
+        }
+    }
+
+    private void AttackPlayer()
+    {
+        if (Time.time - lastAttackTime >= attackCooldown)
+        {
+            PlayerInfos.Instance.TakeDamage(attack);
+            
+            lastAttackTime = Time.time;
+        }
+    }
+
+    public void SetPathfindingTarget(Transform target)
+    {
+        if (agent != null)
+        {
+            agent.SetDestination(target.position);
         }
     }
 }
