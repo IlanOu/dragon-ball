@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class AgentMovement : MonoBehaviour
 {
     public NavMeshAgent agent;
-    private Vector3 target;
+    public Vector3 target;
     void Update()
     {
         if (Input.GetMouseButton(1))
@@ -19,7 +19,7 @@ public class AgentMovement : MonoBehaviour
                 agent.SetDestination(target);
             }
         }
-
+        
         if (PlayerInfos.Instance.isAttackCharging)
         {
             agent.SetDestination(PlayerInfos.Instance.player.transform.position);

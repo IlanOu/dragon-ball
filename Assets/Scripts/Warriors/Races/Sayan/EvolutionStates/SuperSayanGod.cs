@@ -23,7 +23,7 @@ public class SuperSayanGod : EvolutionState
         //     EvolutionStateMachine.ChangeState(new SuperSayanIII(gameObject, EvolutionStateMachine));
         // }
         
-        Debug.Log("Can't evolve more");
+        // Debug.Log("Can't evolve more");
     }
 
     public override void Exit()

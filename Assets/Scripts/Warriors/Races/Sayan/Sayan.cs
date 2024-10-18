@@ -18,15 +18,22 @@ public class Sayan : Race
         if (evolutionStateMachine == null)
             evolutionStateMachine = gameObject.AddComponent<EvolutionStateMachine>();
         evolutionStateMachine.ChangeState(new SuperSayanI(gameObject, evolutionStateMachine));
+
+        PlayerInfos.Instance.OnDeath.AddListener(Reset);
     }
     
     public override void Attack()
-    {
-        Debug.Log(" attaque avec un Kamehameha !");
-    }
+    { }
 
     private void Update()
     {
         evolutionStateMachine.currentState.Update();
+    }
+
+    public void Reset()
+    {
+        Debug.Log("Reset to Sayan");
+        evolutionStateMachine.ChangeState(new SuperSayanI(gameObject, evolutionStateMachine));
+        PlayerInfos.Instance.OnDeath.RemoveListener(Reset);
     }
 }

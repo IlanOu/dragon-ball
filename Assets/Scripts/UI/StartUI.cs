@@ -21,6 +21,7 @@ public class StartUI : MonoBehaviour
     void Start()
     {
         OnPlayerReady += () => EnemyGenerator.Instance.Initialize();
+        OnPlayerReady += () => GameManager.Instance.Initialize();
         CreateButtons();
     }
 
