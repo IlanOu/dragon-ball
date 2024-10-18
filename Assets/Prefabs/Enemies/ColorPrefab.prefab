@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6368984132024761229}
   m_Layer: 0
-  m_Name: GoblinPrefab
+  m_Name: ColorPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

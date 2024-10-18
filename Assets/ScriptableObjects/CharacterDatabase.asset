@@ -19,7 +19,7 @@ MonoBehaviour:
     prefabCharacter: {fileID: 4754745085934575596, guid: 387ccf0ae91f7e5448dd19e3acdc9677, type: 3}
     mainTechnic: 0
     prefabMainTechnic: {fileID: 4754745085934575596, guid: d34a1d5e9caa0594fbac7483e691038a, type: 3}
-    mainDamageMultiplier: 3
+    mainDamageMultiplier: 5
     secondaryTechnic: 1
     prefabSecondaryTechnic: {fileID: 4754745085934575596, guid: 29546e76fbe5e8f428be658b054f144f, type: 3}
     secondaryDamageMultiplier: 1

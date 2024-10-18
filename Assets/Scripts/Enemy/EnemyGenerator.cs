@@ -50,6 +50,8 @@ public class EnemyGenerator : MonoBehaviour
         while (true)
         {
             waveNumber++;
+            WaveTitleUI.Instance.SetWaveTitle(waveNumber);
+            WaveTitleUI.Instance.SetWaveInfos($"Début de la vague {waveNumber}", 5f);
             int enemyCount = BaseEnemyCount + (waveNumber - 1) * EnemyIncreasePerWave;
             List<EnemyType> enemyTypes = new List<EnemyType> { EnemyType.Goblin, EnemyType.Dragon };
     
@@ -78,6 +80,7 @@ public class EnemyGenerator : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         Debug.Log($"Wave {waveNumber} spawned with {enemyCount} enemies");
+        WaveTitleUI.Instance.SetWaveInfos($"{enemyCount} ennemis sont apparus.", 3f);
     }
 
     private Enemy CreateEnemy(EnemyType type)
@@ -104,6 +107,7 @@ public class EnemyGenerator : MonoBehaviour
         {
             OnWaveCompleted?.Invoke();
             Debug.Log($"Wave {waveNumber} completed");
+            WaveTitleUI.Instance.SetWaveInfos($"Vague {waveNumber} complétée !", 5f);
         }
         
         Destroy(enemy.gameObject);
