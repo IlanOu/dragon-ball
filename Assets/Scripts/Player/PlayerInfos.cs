@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfos: MonoBehaviour
 {
@@ -127,5 +128,11 @@ public class PlayerInfos: MonoBehaviour
         player.GetComponent<AgentMovement>().target = player.transform.position;
 
         Heal(maxLife);
+    }
+    
+    public void Reset()
+    {
+        // Destroy(player);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

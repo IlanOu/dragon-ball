@@ -24,6 +24,7 @@ public class StartUI : MonoBehaviour
         OnPlayerReady += () => GameManager.Instance.Initialize();
         CreateButtons();
     }
+    
 
     void CreateButtons()
     {

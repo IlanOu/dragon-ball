@@ -676,7 +676,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5882353}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1522,6 +1522,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathUI: {fileID: 1293834075}
+  respawnButton: {fileID: 889476656}
+  mainMenuButton: {fileID: 1317312660}
+  startUI: {fileID: 1128325710}
 --- !u!1 &1653618132
 GameObject:
   m_ObjectHideFlags: 0

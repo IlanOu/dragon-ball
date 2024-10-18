@@ -9,15 +9,17 @@ public class DeathUI : MonoBehaviour
     
     public GameObject respawnButton;
     public GameObject mainMenuButton;
+    public StartUI startUI;
     
     private Button respawnBTN;
     private Button mainMenuBTN;
 
     private void Start()
     {
-        
         respawnBTN = respawnButton.GetComponent<Button>();
         mainMenuBTN = mainMenuButton.GetComponent<Button>();
+        
+        mainMenuBTN.onClick.AddListener(GoToMainMenu);
         Hide();
     }    
     public void Show()
@@ -33,5 +35,10 @@ public class DeathUI : MonoBehaviour
     public void Hide()
     {
         deathUI.SetActive(false);
+    }
+
+    public void GoToMainMenu()
+    {
+        PlayerInfos.Instance.Reset();
     }
 }

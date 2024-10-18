@@ -40,7 +40,9 @@ public class EnemyGenerator : MonoBehaviour
     public void Initialize()
     {
         director = new EnemyDirector(baseEnemyPrefab);
+        
         StartCoroutine(WaveSpawner());
+        
     }
 
     private IEnumerator WaveSpawner()
