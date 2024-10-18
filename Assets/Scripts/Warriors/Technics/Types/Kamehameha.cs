@@ -30,6 +30,13 @@ public class Kamehameha : ITechnic
     {
         PlayerInfos.Instance.isAttackCharging = true;
         
+        if (PlayerInfos.Instance.mainTechnic == this)
+        {
+            TechnicManager.Instance.mainTechnicImage.fillAmount = 0f;
+        }else if (PlayerInfos.Instance.secondaryTechnic == this)
+        {
+            TechnicManager.Instance.secondaryTechnicImage.fillAmount = 0f;
+        }
         Debug.Log("Charge du Kamehameha...");
 
         yield return new WaitForSeconds(chargeTime);
@@ -88,11 +95,19 @@ public class Kamehameha : ITechnic
     {
         isCooldown = true;
         Debug.Log("Kamehameha en recharge...");
-
+        
+        
         yield return new WaitForSeconds(cooldownTime);
 
         isCooldown = false;
         Debug.Log("Kamehameha prêt !");
+        if (PlayerInfos.Instance.mainTechnic == this)
+        {
+            TechnicManager.Instance.mainTechnicImage.fillAmount = 1f;
+        }else if (PlayerInfos.Instance.secondaryTechnic == this)
+        {
+            TechnicManager.Instance.secondaryTechnicImage.fillAmount = 1f;
+        }
     }
 
     private Vector3 GetMouseWorldPosition()

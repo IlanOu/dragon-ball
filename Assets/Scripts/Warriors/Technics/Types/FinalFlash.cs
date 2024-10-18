@@ -31,7 +31,15 @@ public class FinalFlash : ITechnic
     {
         PlayerInfos.Instance.isAttackCharging = true;
         Debug.Log("Charge du Final Flash...");
-
+        if (PlayerInfos.Instance.mainTechnic == this)
+        {
+            TechnicManager.Instance.mainTechnicImage.fillAmount = 0f;
+        }else if (PlayerInfos.Instance.secondaryTechnic == this)
+        {
+            TechnicManager.Instance.secondaryTechnicImage.fillAmount = 0f;
+        }
+        
+        
         // Effet de charge plus intense
         // TODO: Ajouter des effets visuels et sonores pour la charge
 
@@ -97,12 +105,21 @@ public class FinalFlash : ITechnic
     private IEnumerator CooldownRoutine()
     {
         isCooldown = true;
+        
         Debug.Log("Final Flash en recharge...");
 
+        
         yield return new WaitForSeconds(cooldownTime);
 
         isCooldown = false;
         Debug.Log("Final Flash prêt !");
+        if (PlayerInfos.Instance.mainTechnic == this)
+        {
+            TechnicManager.Instance.mainTechnicImage.fillAmount = 1f;
+        }else if (PlayerInfos.Instance.secondaryTechnic == this)
+        {
+            TechnicManager.Instance.secondaryTechnicImage.fillAmount = 1f;
+        }
     }
 
     private Vector3 GetMouseWorldPosition()

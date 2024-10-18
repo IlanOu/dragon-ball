@@ -31,6 +31,14 @@ public class DeathBeam : ITechnic
         PlayerInfos.Instance.isAttackCharging = true;
         
         Debug.Log("Charge du Death Beam...");
+        if (PlayerInfos.Instance.mainTechnic == this)
+        {
+            TechnicManager.Instance.mainTechnicImage.fillAmount = 0f;
+        }else if (PlayerInfos.Instance.secondaryTechnic == this)
+        {
+            TechnicManager.Instance.secondaryTechnicImage.fillAmount = 0f;
+        }
+        
         yield return new WaitForSeconds(chargeTime);
 
         PlayerInfos.Instance.isAttackCharging = false;
@@ -88,6 +96,13 @@ public class DeathBeam : ITechnic
         yield return new WaitForSeconds(cooldownTime);
         isCooldown = false;
         Debug.Log("Death Beam prêt !");
+        if (PlayerInfos.Instance.mainTechnic == this)
+        {
+            TechnicManager.Instance.mainTechnicImage.fillAmount = 1f;
+        }else if (PlayerInfos.Instance.secondaryTechnic == this)
+        {
+            TechnicManager.Instance.secondaryTechnicImage.fillAmount = 1f;
+        }
     }
 
     private Vector3 GetMouseWorldPosition()

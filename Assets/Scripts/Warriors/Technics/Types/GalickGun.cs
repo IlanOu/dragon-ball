@@ -31,7 +31,14 @@ public class GalickGun : ITechnic
     {
         PlayerInfos.Instance.isAttackCharging = true;
         Debug.Log("Charge du Galick Gun...");
-
+        if (PlayerInfos.Instance.mainTechnic == this)
+        {
+            TechnicManager.Instance.mainTechnicImage.fillAmount = 0f;
+        }else if (PlayerInfos.Instance.secondaryTechnic == this)
+        {
+            TechnicManager.Instance.secondaryTechnicImage.fillAmount = 0f;
+        }
+        
         // TODO: Ajouter des effets visuels et sonores pour la charge
         yield return new WaitForSeconds(chargeTime);
 
@@ -107,11 +114,19 @@ public class GalickGun : ITechnic
     {
         isCooldown = true;
         Debug.Log("Galick Gun en recharge...");
-
+        
+        
         yield return new WaitForSeconds(cooldownTime);
 
         isCooldown = false;
         Debug.Log("Galick Gun prêt !");
+        if (PlayerInfos.Instance.mainTechnic == this)
+        {
+            TechnicManager.Instance.mainTechnicImage.fillAmount = 1f;
+        }else if (PlayerInfos.Instance.secondaryTechnic == this)
+        {
+            TechnicManager.Instance.secondaryTechnicImage.fillAmount = 1f;
+        }
     }
 
     private Vector3 GetMouseWorldPosition()
