@@ -59,6 +59,11 @@ public class PlayerInfos: MonoBehaviour
     {
         life -= damage;
         
+        if (life <= 0)
+        {
+            life = 0;
+        }
+        
         if (life <= 0 && isAlive)
         {
             Kill();

@@ -8,27 +8,30 @@ public class AgentMovement : MonoBehaviour
     public Vector3 target;
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (PlayerInfos.Instance.isAlive)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            if (Input.GetMouseButton(1))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                target = hit.point;
-                agent.SetDestination(target);
+                if (Physics.Raycast(ray, out hit))
+                {
+                    target = hit.point;
+                    agent.SetDestination(target);
+                }
             }
-        }
-        
-        if (PlayerInfos.Instance.isAttackCharging)
-        {
-            agent.SetDestination(PlayerInfos.Instance.player.transform.position);
-        }
-        else
-        {
-            if (agent.destination != target)
+            
+            if (PlayerInfos.Instance.isAttackCharging)
             {
-                agent.SetDestination(target);
+                agent.SetDestination(PlayerInfos.Instance.player.transform.position);
+            }
+            else
+            {
+                if (agent.destination != target)
+                {
+                    agent.SetDestination(target);
+                }
             }
         }
     }

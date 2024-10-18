@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
 
         model = Instantiate(modelPrefab, transform);
         model.transform.localPosition = Vector3.zero;
-        transform.localPosition = new Vector3(0f, 2f, 0f);
+        // transform.localPosition = new Vector3(0f, 2f, 0f);
     }
 
     public void AddPathfindingSystem()
@@ -83,6 +83,7 @@ public class Enemy : MonoBehaviour
 
     public void Kill()
     {
+        PlayerInfos.Instance.Heal(1);
         OnDeath?.Invoke();
     }
     

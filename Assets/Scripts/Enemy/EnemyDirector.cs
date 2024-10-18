@@ -9,15 +9,15 @@ public class EnemyDirector
         this.basePrefab = basePrefab;
     }
 
-    public Enemy BuildGoblin(GameObject goblinPrefab)
+    public Enemy BuildGoblin(GameObject goblinPrefab, Vector3 spawnPosition)
     {
         EnemyBuilder builder = new EnemyBuilder(basePrefab);
-        return builder.BuildEnemy(goblinPrefab, "Goblin", 12, 1, 3.5f);
+        return builder.BuildEnemy(goblinPrefab, "Goblin", 12, 1, 3.5f, spawnPosition);
     }
 
-    public Enemy BuildDragon(GameObject dragonPrefab)
+    public Enemy BuildDragon(GameObject dragonPrefab, Vector3 spawnPosition)
     {
         EnemyBuilder builder = new EnemyBuilder(basePrefab);
-        return builder.BuildEnemy(dragonPrefab, "Dragon", 20, 3, 5.0f);
+        return builder.BuildEnemy(dragonPrefab, "Dragon", 20, 3, 5.0f, spawnPosition);
     }
 }

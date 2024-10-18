@@ -1,36 +1,32 @@
 using UnityEngine;
-using System.Collections;
 
 public class ItemGenerator : MonoBehaviour
 {
     public GameObject map;
     public GameObject itemPrefab;
-    public int numberOfItems;
     public float generationInterval;
 
     private Vector3 mapSize;
+    private float timeSinceLastGeneration;
+    private GameObject currentItem;
 
     void Start()
     {
-       
         mapSize = map.GetComponent<Renderer>().bounds.size;
-
-       
-        StartCoroutine(GenerateItems());
+        timeSinceLastGeneration = generationInterval; // Pour générer un item immédiatement au démarrage
     }
 
-    IEnumerator GenerateItems()
+    void Update()
     {
-        int itemsGenerated = 0;
-
-        while (itemsGenerated < numberOfItems)
+        if (currentItem == null)
         {
-            // Générer un item
-            GenerateItem();
-            itemsGenerated++;
+            timeSinceLastGeneration += Time.deltaTime;
 
-            // Attendre l'intervalle spécifié avant la prochaine génération
-            yield return new WaitForSeconds(generationInterval);
+            if (timeSinceLastGeneration >= generationInterval)
+            {
+                GenerateItem();
+                timeSinceLastGeneration = 0f;
+            }
         }
     }
 
@@ -47,9 +43,32 @@ public class ItemGenerator : MonoBehaviour
         randomPosition += map.transform.position;
 
         // Instancier l'item à la position calculée
-        GameObject generatedItem = Instantiate(itemPrefab, randomPosition, Quaternion.identity);
+        currentItem = Instantiate(itemPrefab, randomPosition, Quaternion.identity);
 
-        generatedItem.AddComponent<Item>();
-        generatedItem.AddComponent<SpeedBoostItem>();
+        currentItem.AddComponent<Item>();
+        currentItem.AddComponent<SpeedBoostItem>();
+
+        // Ajouter un composant pour détecter la destruction de l'item
+        ItemDestructionDetector detector = currentItem.AddComponent<ItemDestructionDetector>();
+        detector.OnItemDestroyed += OnItemDestroyed;
+    }
+
+    void OnItemDestroyed()
+    {
+        // L'item a été détruit, on peut en générer un nouveau après l'intervalle
+        currentItem = null;
+        timeSinceLastGeneration = 0f;
+    }
+}
+
+// Nouveau composant pour détecter la destruction de l'item
+public class ItemDestructionDetector : MonoBehaviour
+{
+    public delegate void ItemDestroyedHandler();
+    public event ItemDestroyedHandler OnItemDestroyed;
+
+    private void OnDestroy()
+    {
+        OnItemDestroyed?.Invoke();
     }
 }

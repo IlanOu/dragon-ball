@@ -82,12 +82,14 @@ public class EnemyGenerator : MonoBehaviour
 
     private Enemy CreateEnemy(EnemyType type)
     {
+        Vector3 spawnPosition = transform.position;
+        
         switch (type)
         {
             case EnemyType.Goblin:
-                return director.BuildGoblin(goblinPrefab);
+                return director.BuildGoblin(goblinPrefab, spawnPosition);
             case EnemyType.Dragon:
-                return director.BuildDragon(dragonPrefab);
+                return director.BuildDragon(dragonPrefab, spawnPosition);
             default:
                 Debug.LogError("Unknown enemy type");
                 return null;
