@@ -135,4 +135,9 @@ public class PlayerInfos: MonoBehaviour
         // Destroy(player);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    
+    public void ApplyItemEffect(IItemEffect item)
+    {
+        item.ApplyEffect();
+    }
 }
