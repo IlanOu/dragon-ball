@@ -41,6 +41,7 @@ public class ItemGenerator : MonoBehaviour
 
         // Ajuster la position par rapport à la position de la map
         randomPosition += map.transform.position;
+        randomPosition.y += 0.5f;
 
         // Instancier l'item à la position calculée
         currentItem = Instantiate(itemPrefab, randomPosition, Quaternion.identity);
